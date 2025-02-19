@@ -1,0 +1,28 @@
+name: ResourcesSK
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  resources:
+    name: Scrape
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+
+      - name: Fetch resources
+        run: node ./scrapper.js
+
+      - name: Update resources
+        uses: test-room-7/action-update-file@v1
+        with:
+          file-path: flights.json
+          commit-msg: Update resources
+          github-token: ${{ secrets.GITHUB_TOKEN }}
