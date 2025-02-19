@@ -15,10 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - run: npm install -g pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: npx puppeteer browsers install chrome
-      - run: export PUPPETEER_CACHE_DIR=/home/runner/.cache/puppeteer
+      - run: npm ci
 
       - name: Fetch resources
         run: node ./scrapper.js
