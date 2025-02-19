@@ -7,15 +7,16 @@ permissions:
   contents: write
 jobs:
   resources:
-    name: Scrape
+    name: Scrape Grecia
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-      - run: npm ci
+          node-version: 20
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
 
       - name: Fetch resources
         run: node ./scrapper.js
