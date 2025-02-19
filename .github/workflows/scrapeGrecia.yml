@@ -1,4 +1,4 @@
-name: ResourcesSK
+name: Grecia
 on:
   schedule:
     - cron: "0 * * * *"
