@@ -31,7 +31,7 @@ const saveFlightsData = async (url) => {
   }
 
   const scrapeData = await page.evaluate(() => {
-    const price = document.querySelector('[role="group"] [class*="price-text"]').textContent
+    const price = document.querySelector('[role="group"] [class*="price-text"]')?.textContent
     const cleanPrice = price.replace(/\s+/g, '')
 
     return { price: cleanPrice, timestamp: Date.now() }
