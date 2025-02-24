@@ -30,6 +30,9 @@ const saveFlightsData = async (url) => {
     await lastButton.click();
   }
 
+  // wait till spinner price stop for fair price
+  await new Promise((r) => setTimeout(r, 10000));
+
   const scrapeData = await page.evaluate(() => {
     const price = document.querySelector('[role="group"] [class*="price-text"]')?.textContent
     const cleanPrice = price?.replace(/\s+/g, '')
