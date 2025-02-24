@@ -33,8 +33,10 @@ const saveFlightsData = async (url) => {
   const scrapeData = await page.evaluate(() => {
     const price = document.querySelector('[role="group"] [class*="price-text"]')?.textContent
     const cleanPrice = price.replace(/\s+/g, '')
+    const timestamp = new Date(Date.now())
+    const actualTime = timestamp.toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })
 
-    return { price: cleanPrice, timestamp: Date.now() }
+    return { price: cleanPrice, time: actualTime }
   })
 
   await browser.close()
